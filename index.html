@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Değiştirme</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="button"] {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Metin Girin ve URL'yi Değiştirin</h1>
+        <p>Hakan</p>
+        <input type="text" id="searchText" placeholder="https://github.com/HakanYetgin/Justicess.git">
+        <input type="button" value="URL'yi Güncelle" onclick="updateURL()">
+    </div>
+    
+    <script>
+        function updateURL() {
+            var text = document.getElementById("searchText").value;
+            if (text) {
+                var newUrl = window.location.origin + window.location.pathname + "?q=" + encodeURIComponent(text);
+                window.history.pushState({ path: newUrl }, '', newUrl);
+                alert("URL güncellendi: " + newUrl);
+            } else {
+                alert("Lütfen bir metin girin.");
+            }
+        }
+    </script>
+</body>
+</html>
