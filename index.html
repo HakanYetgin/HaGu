@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Native Login Example</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .input {
+            height: 40px;
+            border: 1px solid gray;
+            margin-bottom: 12px;
+            padding: 0 8px;
+            width: 200px;
+        }
+        .image {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        class App {
+            constructor() {
+                this.state = {
+                    password: '123',
+                    loggedIn: false
+                };
+                this.init();
+            }
+
+            init() {
+                this.render();
+            }
+
+            handleLogin() {
+                const passwordInput = document.getElementById('password');
+                if (passwordInput.value === '123') {
+                    this.state.loggedIn = true;
+                } else {
+                    alert('Incorrect password!');
+                }
+                this.render();
+            }
+
+            render() {
+                const app = document.getElementById('app');
+                app.innerHTML = '';
+                if (this.state.loggedIn) {
+                    app.innerHTML = `
+                        <div class="container">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-g4F-XFCBRgGUsSs1Sy-jm4ZS6m3lNVgFbw&s" alt="Image" class="image" />
+                        </div>
+                    `;
+                } else {
+                    app.innerHTML = `
+                        <div class="container">
+                            <input type="password" id="password" class="input" placeholder="Enter password" />
+                            <button onclick="app.handleLogin()">Login</button>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        const app = new App();
+    </script>
+</body>
+</html>
